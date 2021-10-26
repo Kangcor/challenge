@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-image">
+    <figure class="image is-4by3">
+      <img *ngIf="post?.imageStatus === IMAGE_STATUS_OK" [src]="post?.image_url" alt="Post image">
+      <img *ngIf="post?.imageStatus === IMAGE_STATUS_ERROR" [src]="POST_IMAGE_404_URL" alt="Image not found">
+    </figure>
+  </div>
+  <div class="card-content">
+    <div class="media">
+      <div class="media-content">
+        <p class="title is-4">{{ post?.title }}</p>
+      </div>
+    </div>
+
+    <div class="content">
+      {{ post?.content }}
+      <br>
+      <strong>Lat:</strong> {{ post?.lat }}
+      <br>
+      <strong>Long:</strong> {{ post?.long }}
+    </div>
+  </div>
+</div>

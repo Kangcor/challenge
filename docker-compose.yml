@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  app:
+    image: wefoxgroup/wg-web-challenge:latest
+    container_name: wg-web-challenge
+    ports:
+      - 3000:3000
+
+  node:
+    build:
+      context: .
+      dockerfile: ./Dockerfile-node
+    command: "npm start"
+    volumes:
+      - ./posts-demo/src:/home/app/src
+      - ./posts-demo/dist:/home/app/dist
+    ports:
+      - 4200:4200

@@ -1,0 +1,70 @@
+<h1 class="title">
+  Posts
+</h1>
+<p class="subtitle">
+  List view
+</p>
+<button class="button is-primary" (click)="showCreatePost(true)">Create post</button>
+<div class="table-container">
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Title</th>
+      <th>Content</th>
+      <th><abbr title="Latitude">Lat</abbr></th>
+      <th><abbr title="Longitude">Long</abbr></th>
+      <th>Image</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let post of postList">
+      <td>{{ post.title }}</td>
+      <td>{{ post.content }}</td>
+      <td>{{ post.lat }}</td>
+      <td>{{ post.long }}</td>
+      <td>
+        <figure class="image is-128x128">
+          <img *ngIf="post.imageStatus === IMAGE_STATUS_OK" [src]="post.image_url" (error)=onImageError(post.id)
+               alt="Post image">
+          <img *ngIf="post.imageStatus === IMAGE_STATUS_ERROR" [src]="POST_IMAGE_404_URL" alt="Image not found">
+        </figure>
+      </td>
+      <td>
+        <div class="field has-addons">
+          <p class="control">
+            <button class="button" (click)="detailPost(post)">
+              <span class="icon is-small">
+                <i class="fas fa-eye"></i>
+              </span>
+              <span>View</span>
+            </button>
+          </p>
+          <p class="control">
+            <button class="button" (click)="editPost(post)">
+              <span class="icon is-small">
+                <i class="fas fa-edit"></i>
+              </span>
+              <span>Edit</span>
+            </button>
+          </p>
+          <p class="control">
+            <button class="button is-danger" (click)="deletePost(post)">
+              <span class="icon is-small">
+                <i class="fas fa-trash"></i>
+              </span>
+              <span>Remove</span>
+            </button>
+          </p>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<wefox-post-create *ngIf="showCreate" [action]="ACTION_CREATE" (showModal)="showCreatePost($event)"></wefox-post-create>
+<wefox-post-detail *ngIf="showDetail" [post]="selectedPost" (showModal)="showDetailPost($event)"></wefox-post-detail>
+<wefox-post-create *ngIf="showEdit" [post]="selectedPost" [action]="ACTION_EDIT"
+                   (showModal)="showEditPost($event)"></wefox-post-create>
+<wefox-post-delete *ngIf="showDelete" [post]="selectedPost" (showModal)="showDeletePost($event)"></wefox-post-delete>

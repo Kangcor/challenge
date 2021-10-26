@@ -1,0 +1,28 @@
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="/">
+      <img src="/assets/wefox-logo.jpg">
+    </a>
+
+    <a role="button" class="navbar-burger" [ngClass]="{ 'is-active': menuIsActive }"
+       aria-label="menu" aria-expanded="false" data-target="postNavbar" (click)="toggleMenu()">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="postNavbar" class="navbar-menu" [ngClass]="{ 'is-active': menuIsActive }">
+    <div class="navbar-start">
+      <a class="navbar-item" [routerLink]="['/post', 'list']">
+        List
+      </a>
+
+      <a class="navbar-item" [routerLink]="['/post', 'map']">
+        Map
+      </a>
+
+    </div>
+
+  </div>
+</nav>

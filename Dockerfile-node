@@ -1,0 +1,15 @@
+FROM node:14.17.6
+
+RUN mkdir -p /home/app
+
+COPY ./posts-demo/tsconfig.json /home/app
+COPY ./posts-demo/tsconfig.app.json /home/app
+COPY ./posts-demo/angular.json /home/app
+COPY ./posts-demo/package.json /home/app
+COPY ./posts-demo/yarn.lock /home/app
+
+WORKDIR /home/app
+
+RUN yarn
+
+EXPOSE 4200

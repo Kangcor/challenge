@@ -1,0 +1,82 @@
+<div class="modal is-active">
+  <div class="modal-background" (click)="closeModal()"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">
+        {{ this.action === ACTION_CREATE ? 'Create post' : 'Edit post' }}
+      </p>
+      <button class="delete" aria-label="close" (click)="closeModal()"></button>
+    </header>
+    <section class="modal-card-body">
+      <form [formGroup]="myForm">
+        <div class="field">
+          <label class="label">Title</label>
+          <div class="control" [ngClass]="{ 'has-icons-right': myForm.get('title')?.invalid && myForm.get('title')?.touched }">
+            <input formControlName="title" class="input" type="text" placeholder="Title"
+             [ngClass]="{ 'is-danger': myForm.get('title')?.invalid && myForm.get('title')?.touched }">
+            <span class="icon is-small is-right" *ngIf="myForm.get('title')?.invalid && myForm.get('title')?.touched">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+          </div>
+          <p class="help is-danger" *ngIf="myForm.get('title')?.hasError('required') && myForm.get('title')?.touched">
+            Field is required
+          </p>
+        </div>
+
+        <div class="field">
+          <label class="label">Content</label>
+          <div class="control" [ngClass]="{ 'has-icons-right': myForm.get('content')?.invalid && myForm.get('content')?.touched }">
+            <input formControlName="content" class="input" type="text" placeholder="Content"
+             [ngClass]="{ 'is-danger': myForm.get('content')?.invalid && myForm.get('content')?.touched }">
+            <span class="icon is-small is-right" *ngIf="myForm.get('content')?.invalid && myForm.get('content')?.touched">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+          </div>
+          <p class="help is-danger" *ngIf="myForm.get('content')?.hasError('required') && myForm.get('content')?.touched">
+            Field is required
+          </p>
+        </div>
+
+        <div class="field">
+          <label class="label">Latitude</label>
+          <div class="control" [ngClass]="{ 'has-icons-right': myForm.get('lat')?.invalid }">
+            <input formControlName="lat" class="input" type="number" placeholder="Latitude"
+                   min="-90" max="90" [ngClass]="{ 'is-danger': myForm.get('lat')?.invalid }">
+            <span class="icon is-small is-right" *ngIf="myForm.get('lat')?.invalid">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+          </div>
+          <p class="help is-danger" *ngIf="myForm.get('lat')?.hasError('min')">Latitude out of range. Min: -90</p>
+          <p class="help is-danger" *ngIf="myForm.get('lat')?.hasError('max')">Latitude out of range. Max: 90</p>
+        </div>
+
+        <div class="field">
+          <label class="label">Longitude</label>
+          <div class="control" [ngClass]="{ 'has-icons-right': myForm.get('long')?.invalid }">
+            <input formControlName="long" class="input" type="number" placeholder="Longitude"
+                   min="-180" max="180" [ngClass]="{ 'is-danger': myForm.get('long')?.invalid }">
+            <span class="icon is-small is-right" *ngIf="myForm.get('long')?.invalid">
+              <i class="fas fa-exclamation-triangle"></i>
+            </span>
+          </div>
+          <p class="help is-danger" *ngIf="myForm.get('long')?.hasError('min')">Longitude out of range. Min: -180</p>
+          <p class="help is-danger" *ngIf="myForm.get('long')?.hasError('max')">Longitude out of range. Max: 180</p>
+        </div>
+
+        <div class="field">
+          <label class="label">Image URL</label>
+          <div class="control">
+            <input formControlName="image_url" class="input" type="text" placeholder="Image URL">
+          </div>
+        </div>
+
+      </form>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" (click)="createPost()">
+        {{ this.action === ACTION_CREATE ? 'Create post' : 'Save changes' }}
+      </button>
+      <button class="button" (click)="closeModal()">Cancel</button>
+    </footer>
+  </div>
+</div>
