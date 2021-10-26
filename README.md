@@ -13,12 +13,14 @@ In both scenarios it's possible to do basic CRUD actions, it uses the same compo
 
 The form has validations to check the required fields are present and also the latitude and longitude fields stay between the logic range.
 
-The list is updated whenever is updated, aswell as the dynamic map. It's possible to click on the map to see data about the post selected, and to locate the post in the map using the `Map` button.
+The list is updated whenever there are changes, as well as the dynamic map. It's possible to click on the map to see data about the post selected, and to locate the post in the map using the `Map` button.
 
 ## Improvements
 
-To further expand this challenge, I would change the `Post` interface to a Class, with methods to serialize and deserialize the Post between backend and frontend.
+To further expand this challenge, I would change the `Post` interface to a Class, with methods to serialize and deserialize the Post data between backend and frontend.
+
 It's necessary to implement a system to gracefully catch and show the errors during the CRUD actions.
+
 It would be nice to be able to create posts doing a click over the map and showing the Post form with the coordinates already populated.
 
 ## Tech stack
